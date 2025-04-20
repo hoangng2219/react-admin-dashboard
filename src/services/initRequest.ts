@@ -23,7 +23,7 @@ FE -> request api -> axios interceptor request -> BE response -> axios intercept
 */
 
 const requestConfig = {
-  baseURL: 'http://localhost:3000',
+  baseURL: 'https://tony-auth-express-vdee-6j0s-fhovok9bu.vercel.app',
   timeout: 5000,
   showLoading: true
 }
@@ -95,6 +95,7 @@ export function initRequest() {
         return Promise.reject(error);
       }
     }
+
 
     // handle error
     switch (status) {
