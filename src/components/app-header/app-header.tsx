@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
-import { useSidebar } from "../contexts/sidebar-context";
+import { useSidebar } from "../../contexts/sidebar-context";
 import React from "react";
+import ThemeButton from "./theme-button";
+import { useTheme } from "../../contexts/theme-context";
+import UserDropdown from "./user-dropdown";
 
 const AppHeader: React.FC = () => {
   const [isApplicationMenuOpen, setApplicationMenuOpen] = React.useState(false);
-  // const { toggleTheme } = useTheme();
+  const { toggleTheme } = useTheme();
   const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar();
 
   const handleToggle = () => {
@@ -129,7 +132,7 @@ const AppHeader: React.FC = () => {
             </form>
           </div>
         </div>
-        {/* <div
+        <div
           className={`${
             isApplicationMenuOpen ? "flex" : "hidden"
           } items-center justify-between w-full gap-4 px-5 py-4 lg:flex shadow-theme-md lg:justify-end lg:px-0 lg:shadow-none`}
@@ -138,10 +141,9 @@ const AppHeader: React.FC = () => {
             <ThemeButton 
               toggleTheme={toggleTheme}
             />
-            <NotificationDropdown />
           </div>
           <UserDropdown />
-        </div> */}
+        </div>
       </div>
     </header>
   );
