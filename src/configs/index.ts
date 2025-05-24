@@ -11,3 +11,9 @@ export const PATH = {
   UNAUTHORIZED: '/401',
   SERVICE_UNAVAILABLE: '/503'
 }
+
+export const ROLE = {
+  ADMIN: 'admin',
+  OPERATOR: 'operator',
+  MEMBER: 'member'
+}

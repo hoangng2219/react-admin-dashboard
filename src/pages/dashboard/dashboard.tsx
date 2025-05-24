@@ -1,23 +1,35 @@
-import { httpRequest } from "../../services/initRequest"
+import AccessControl from "../../components/access-control";
+import SimpleButton from "../../components/button/simple-button";
 
 function Dashboard() {
-
-  async function handleAuthenticate() {
-    const res = await httpRequest('/api/auth', {
-      method: 'POST',
-      headers: {
-        "x-auth-token": window.localStorage.getItem('access_token')
-      }
-    });
-
-    console.log("handleAuthenticate: ", res)
-  }
-
+  const user = {};
   return (
     <div>
-      <button type="button" onClick={handleAuthenticate}>
-        check authen
-      </button>
+        {user}
+      <AccessControl resource="/dashboard/action/create">
+        <SimpleButton>
+          Create
+        </SimpleButton>
+      </AccessControl>
+      
+      <br /><br />
+      <SimpleButton>
+        Show
+      </SimpleButton>
+      <br /><br />
+      <SimpleButton>
+        Edit
+      </SimpleButton>
+      <br /><br />
+      <SimpleButton>
+        Delete
+      </SimpleButton>
+
+      <AccessControl resource="/report/action/import">
+        <SimpleButton>
+          IMPORT CSV
+        </SimpleButton>
+      </AccessControl>
     </div>
   )
 }

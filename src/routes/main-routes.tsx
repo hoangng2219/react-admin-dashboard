@@ -1,5 +1,5 @@
 import React from "react";
-import { PATH } from "../configs";
+import { PATH, ROLE } from "../configs";
 import { Route, Routes } from "react-router-dom"
 
 import { Template1 } from "../layouts/template1";
@@ -7,6 +7,7 @@ import { Template1 } from "../layouts/template1";
 import AuthRoutes from '../routes/auth-routes';
 import GuestRoutes from "../routes/guest-routes";
 import Spinner from "../components/spinner";
+import RoleRoutes from "./role-routers";
 
 const Dashboard = React.lazy(() => import('../pages/dashboard'));
 const Login = React.lazy(() => import('../pages/login'));
@@ -23,7 +24,8 @@ const routesConfig = [
     path: PATH.ROOT,
     template: Template1,
     auth: AuthRoutes,
-    component: Dashboard
+    component: Dashboard,
+    requireRoles: [ROLE.ADMIN, ROLE.OPERATOR]
   },
   {
     path: PATH.LOGIN,
@@ -44,7 +46,12 @@ const routesConfig = [
     component: EmployeeList,
     template: Template1,
     auth: AuthRoutes,
-  }
+    requireRoles: [ROLE.ADMIN, ROLE.MEMBER, ROLE.OPERATOR]
+  },
+  {
+    path: PATH.ACCESS_DENIED,
+    component: () => <div>this access denied</div>
+  },
 ]
 
 function renderRoutes() {
@@ -62,7 +69,9 @@ function renderRoutes() {
               element={
                 <Auth>
                   <Template>
-                      <Component />
+                      <RoleRoutes requireRoles={route?.requireRoles || []}>
+                        <Component />
+                      </RoleRoutes>
                   </Template>
                 </Auth>
               } 

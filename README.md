@@ -14,7 +14,7 @@
 ## Authenticate -> xác thực
 user login -> go to system
 
-## Authorize -> phân quyền
+## Authorize -> phân quyền (RBAC - role based access control)
 operator
 member -> view 
 admin ->  view, create, edit, delete
@@ -30,3 +30,8 @@ admin ->  view, create, edit, delete
 - BE CRUD - Create (POST), Read (GET), Update (PUT), Delete (DELETE)
   - GET /api/product/list -> access_token -> all role -> can
   - POST /api/product/create -> access_token -> admin, operator -> can
+
+# Error Boundary
+- fallback UI friendly when code react is error
+- catch error, catch component error to easy keep to tracking
+- user can action other method although has error
